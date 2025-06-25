@@ -393,7 +393,7 @@ You can view the messages sent by pressing 2 in the menu after logging in; you c
  
 
  
-
+Codes of the chat app poe part 2 in java is available at:
  
 
  
