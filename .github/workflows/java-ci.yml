@@ -1,0 +1,42 @@
+# .github/workflows/java-ci.yml
+
+name: Chat_App-CI with Maven
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display Java and Maven Versions
+        run: |
+            java -version
+            mvn --version
+
+      - name: Clean and Validate project
+        run: mvn clean validate
+
+      - name: Compile the project
+        run: mvn compile
+
+      - name: Compile Test Sources
+        run: mvn test-compile
+
+      - name: Run JUnit4 Tests
+        run: mvn test -Dtest.reports.dir=target/surefire-reports
+
+      - name: Generate Test Report
+        run: mvn surefire-report:report
+        if: always()
+
+
